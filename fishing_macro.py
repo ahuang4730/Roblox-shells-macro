@@ -80,14 +80,14 @@ def calibrate():
     time.sleep(0.5)
 
     with mss.mss() as sct:
-        monitor = sct.monitors[3]
+        monitor = sct.monitors[1]
         raw = sct.grab(monitor)
         screenshot = np.array(raw)
         screenshot = cv2.cvtColor(screenshot, cv2.COLOR_BGRA2BGR)
 
     # Store monitor offset so we can map screenshot coords to real screen coords
-    mon_left = sct.monitors[3]["left"]
-    mon_top  = sct.monitors[3]["top"]
+    mon_left = sct.monitors[1]["left"]
+    mon_top  = sct.monitors[1]["top"]
 
     clicks = []
     instructions = [
@@ -142,7 +142,7 @@ def calibrate():
         "center_y":  real_cy,
         "radius":    radius,
         "thickness": thickness,
-        "mon_index": 3,
+        "mon_index": 1,
     }
 
     with open(SAVE_FILE, "w") as f:
